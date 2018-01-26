@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour {
 	private RayViewer _ray_viewer;
 
 	[SerializeField]
-	private GameObject _link_prefab; 
+	private GameObject _link_prefab;
 
 	private Polarity _polarity = Polarity.Off;
 	public Polarity Polarity {
@@ -26,7 +26,8 @@ public class Tower : MonoBehaviour {
 	public void CheckLink () {
 		List<Tower> all_towers = GameManager.Instance.towers;
 		foreach (Tower t in all_towers) {
-			if (this._ray_viewer.CheckView (t.transform)) {
+			RayViewer.RayResult res = this._ray_viewer.CheckView (t.transform);
+			if (res == RayViewer.RayResult.Tower || res == RayViewer.RayResult.Charachter) {
 				this.CreateLink (t);
 				return;
 			}

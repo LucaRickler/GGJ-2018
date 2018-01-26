@@ -4,5 +4,7 @@ using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager> {
 	public List<Tower> towers;
+
+
 }
 
