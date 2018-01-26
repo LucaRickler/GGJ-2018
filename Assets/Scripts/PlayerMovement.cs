@@ -54,11 +54,19 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Shoot() {
+
+        string prefab_name = "";
+        GameObject bullet;
+        bool mouse_down = false;
         if (Input.GetMouseButtonDown(0)) {
-            Instantiate(Resources.Load("Prefabs/BulletPlus"), transform.localPosition, transform.localRotation);
+            prefab_name = "BulletPlus";
+            mouse_down = true;
         }
         else if (Input.GetMouseButtonDown(1)) {
-            Instantiate(Resources.Load("Prefabs/BulletMinus"), transform.localPosition, transform.localRotation);
+            prefab_name = "BulletMinus";
+            mouse_down = true;
         }
+        if(mouse_down)
+            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/"+prefab_name), transform.localPosition, transform.localRotation);      
     }
 }

@@ -5,6 +5,6 @@ using UnityEngine;
 public class RayViewer : MonoBehaviour {
 
 	public bool CheckView (Transform other) {
-		
+        return false;
 	}
 }

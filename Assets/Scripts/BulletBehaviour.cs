@@ -6,8 +6,24 @@ public class BulletBehaviour : MonoBehaviour {
 
     public float lifeTime;
     public float speed;
-	// Use this for initialization
-	void Start () {
+
+    [SerializeField]
+    private Polarity _polarity;
+
+    public Polarity Polarity
+    {
+        get
+        {
+            return this._polarity;
+        }
+        set
+        {
+            this._polarity = value;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
