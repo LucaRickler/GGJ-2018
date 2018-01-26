@@ -42,7 +42,7 @@ public class Tower : MonoBehaviour {
 
 }
 
-enum Polarity {
+public enum Polarity {
 	Negative,
 	Off,
 	Positive
