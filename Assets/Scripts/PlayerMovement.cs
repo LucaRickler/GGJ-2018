@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool isMovingBack;
 
     public float speed;
+    private float delayBetweenShoot = 0.5f;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,7 +22,13 @@ public class PlayerMovement : MonoBehaviour {
         InputPlayer();
         UpdatePosition();
         UpdateDirection();
-        Shoot();
+        if (delayBetweenShoot <= 0)
+        {
+            Shoot();
+            delayBetweenShoot = 0.2f;
+        }
+        else
+            delayBetweenShoot -= Time.deltaTime;
 	}
 
     void InputPlayer() {
@@ -58,11 +66,11 @@ public class PlayerMovement : MonoBehaviour {
         string prefab_name = "";
         GameObject bullet;
         bool mouse_down = false;
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButton(0)) {
             prefab_name = "BulletPlus";
             mouse_down = true;
         }
-        else if (Input.GetMouseButtonDown(1)) {
+        else if (Input.GetMouseButton(1)) {
             prefab_name = "BulletMinus";
             mouse_down = true;
         }
