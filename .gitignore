@@ -1,14 +1,10 @@
-Builds/**
-MathDungeon/Temp/**
-MathDungeon/Build/**
-
 # =============== #
 # Unity generated #
 # =============== #
 [Tt]emp/
 [Oo]bj/
-[Bb]uilds
-MathDungeon/[Ll]ibrary/
+[Bb]uilds/
+[Ll]ibrary/
 sysinfo.txt
 *.stackdump
 
