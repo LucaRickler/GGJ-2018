@@ -8,9 +8,9 @@ public class BulletBehaviour : MonoBehaviour {
     public float speed;
 
     [SerializeField]
-    private Polarity _polarity;
+    private Definitions.Polarity _polarity;
 
-    public Polarity Polarity
+    public Definitions.Polarity Polarity
     {
         get
         {
@@ -45,4 +45,11 @@ public class BulletBehaviour : MonoBehaviour {
     void Death() {
         Destroy(this.gameObject);
     }
+
+   /* private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Tower")
+            other.gameObject.GetComponentInParent<Tower>().Polarity = Polarity; 
+        Death();
+    }*/
 }

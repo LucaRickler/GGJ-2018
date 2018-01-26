@@ -8,8 +8,9 @@ public class Tower : MonoBehaviour {
 	[SerializeField]
 	private GameObject _link_prefab;
 
-	private Polarity _polarity = Polarity.Off;
-	public Polarity Polarity {
+	private Definitions.Polarity _polarity = Definitions.Polarity.Off;
+
+	public Definitions.Polarity Polarity {
 		get {
 			return this._polarity;
 		} 
@@ -26,24 +27,31 @@ public class Tower : MonoBehaviour {
 	public void CheckLink () {
 		List<Tower> all_towers = GameManager.Instance.towers;
 		foreach (Tower t in all_towers) {
-			RayViewer.RayResult res = this._ray_viewer.CheckView (t.transform);
-			if (res == RayViewer.RayResult.Tower || res == RayViewer.RayResult.Charachter) {
-				this.CreateLink (t);
-				return;
-			}
+            if (t.gameObject != this.gameObject)
+            {
+                Definitions.HitType res = this._ray_viewer.CheckView(t.transform);
+                if (t.Polarity != Definitions.Polarity.Off && t.Polarity != this.Polarity)
+                {
+                    if (res == Definitions.HitType.Tower || res == Definitions.HitType.Charachter)
+                    {
+                        this.CreateLink(t);
+                        break;
+                    }
+                }
+            }
 		}
 	}
 
 	private void CreateLink (Tower other) {
-		
+        Debug.Log("link on");
 	}
 
-
-
-}
-
-public enum Polarity {
-	Negative,
-	Off,
-	Positive
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Bullet")) {
+            Polarity = other.gameObject.GetComponent<BulletBehaviour>().Polarity;
+            Destroy(other.gameObject);
+        }
+    }
+    
 }

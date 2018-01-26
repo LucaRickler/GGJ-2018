@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RayViewer : MonoBehaviour {
-	public enum RayResult {
-		Wall,
-		Charachter,
-		Tower,
-		None
-	} 
 
-	public RayResult CheckView (Transform other) {
+    
+	public Definitions.HitType CheckView (Transform other) {
 		RaycastHit hit;
-		Physics.Raycast (this.transform.position, other.position, out hit);		
-		if (hit.collider.tag == "wall")
-			return RayResult.Wall;
-		if (hit.collider.tag == "charachter")
-			return RayResult.Charachter;
-		if (hit.collider.tag == "tower")
-			return RayResult.Tower;
-		
-		return RayResult.None;
+        if (Physics.Raycast(transform.position, other.position - transform.position, out hit))
+        {
+
+            if (hit.collider.tag == "Wall")
+                return Definitions.HitType.Wall;
+            if (hit.collider.tag == "harachter")
+                return Definitions.HitType.Charachter;
+            if (hit.collider.tag == "Tower")
+                return Definitions.HitType.Tower;
+        }
+		return Definitions.HitType.None;
 
 	}
 }
