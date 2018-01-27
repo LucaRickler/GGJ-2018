@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - Character
   - Bullet
+  - EnergySphere
+  - Link
+  - Boss
+  - Border
   layers:
   - Default
   - TransparentFX

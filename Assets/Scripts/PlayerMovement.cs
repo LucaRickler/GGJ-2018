@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour {
         else if (isMovingBack)
             position.z -= speed * Time.deltaTime;
 
+        position = CheckWalls(position);
         transform.localPosition = position;
     }
 
@@ -111,4 +112,65 @@ public class PlayerMovement : MonoBehaviour {
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), transform.localPosition, transform.localRotation);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("EnergySphere") || other.tag.Equals("Boss"))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    Vector3 CheckWalls(Vector3 position) {
+        RaycastHit hit;
+        Vector3 direction = transform.forward;
+        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f))) {
+            if (hit.collider.name.Equals("TopBorder"))
+                position += -Vector3.forward * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("LeftBorder"))
+                position += Vector3.right * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("RightBorder"))
+                position += Vector3.left * speed * Time.deltaTime;
+            return position;
+        }
+        direction.z = -direction.z;
+
+        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f))) {
+            if (hit.collider.name.Equals("TopBorder"))
+                position += -Vector3.forward * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("LeftBorder"))
+                position += Vector3.right * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("RightBorder"))
+                position += Vector3.left * speed * Time.deltaTime;
+            return position;
+        }
+        direction = transform.right;
+        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f)))
+        {
+            if (hit.collider.name.Equals("TopBorder"))
+                position += -Vector3.forward * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("LeftBorder"))
+                position += Vector3.right * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("RightBorder"))
+                position += Vector3.left * speed * Time.deltaTime;
+            return position;
+        }
+        direction.x = -direction.x;
+        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f)))
+        {
+            if (hit.collider.name.Equals("TopBorder"))
+                position += -Vector3.forward * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("LeftBorder"))
+                position += Vector3.right * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("RightBorder"))
+                position += Vector3.left * speed * Time.deltaTime;
+            return position;
+        }
+        return position;
+    }
+    
 }

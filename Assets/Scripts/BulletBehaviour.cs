@@ -45,11 +45,4 @@ public class BulletBehaviour : MonoBehaviour {
     void Death() {
         Destroy(this.gameObject);
     }
-
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Tower")
-            other.gameObject.GetComponentInParent<Tower>().Polarity = Polarity; 
-        Death();
-    }*/
 }

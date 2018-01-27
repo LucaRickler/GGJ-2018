@@ -28,13 +28,13 @@ public class Link : MonoBehaviour {
 	}
 
 	void Stretch () {
-		var center = 0.5f * (_target1.localPosition + _target2.localPosition);
+		Vector3 center = 0.5f * (_target1.localPosition + _target2.localPosition);
 		transform.localPosition = center;
 
 		float ax = Mathf.Atan2 (_target2.localPosition.z - _target1.localPosition.z, _target2.localPosition.y - _target1.localPosition.y);
 		float ay = Mathf.Atan2 (_target2.localPosition.x - _target1.localPosition.x, _target2.localPosition.z - _target1.localPosition.z);
 		float az = Mathf.Atan2 (_target2.localPosition.y - _target1.localPosition.y, _target2.localPosition.x - _target1.localPosition.x);
-		transform.localRotation = Quaternion.Euler (Mathf.Rad2Deg * ax, Mathf.Rad2Deg * ay, Mathf.Rad2Deg * az);
+		transform.localRotation = Quaternion.Euler (Mathf.Rad2Deg * ax, Mathf.Rad2Deg * az, Mathf.Rad2Deg * ay);
 
 		var distance = Vector3.Distance (_target1.localPosition, _target2.localPosition);
 
@@ -47,4 +47,10 @@ public class Link : MonoBehaviour {
 		_tower2.Polarity = Definitions.Polarity.Off;
 		Destroy (this.gameObject);
 	}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("EnergySphere"))        
+            Destroy(this.gameObject);
+    }
 }
