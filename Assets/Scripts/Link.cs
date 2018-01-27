@@ -31,10 +31,10 @@ public class Link : MonoBehaviour {
 		var center = 0.5f * (_target1.localPosition + _target2.localPosition);
 		transform.localPosition = center;
 
-		float ax = Mathf.Atan2 (_target2.localPosition.z - _target1.localPosition.z, _target2.localPosition.y - _target1.localPosition.y);
-		float ay = Mathf.Atan2 (_target2.localPosition.x - _target1.localPosition.x, _target2.localPosition.z - _target1.localPosition.z);
-		float az = Mathf.Atan2 (_target2.localPosition.y - _target1.localPosition.y, _target2.localPosition.x - _target1.localPosition.x);
-		transform.localRotation = Quaternion.Euler (Mathf.Rad2Deg * ax, Mathf.Rad2Deg * ay, Mathf.Rad2Deg * az);
+		float ax = RelativePosition () * Mathf.Atan2 (Mathf.Abs(_target2.localPosition.z - _target1.localPosition.z), Mathf.Abs(_target2.localPosition.y - _target1.localPosition.y));
+		float ay = Mathf.Atan2 (Mathf.Abs(_target2.localPosition.x - _target1.localPosition.x), Mathf.Abs(_target2.localPosition.z - _target1.localPosition.z));
+		float az = Mathf.Atan2 (Mathf.Abs(_target2.localPosition.y - _target1.localPosition.y), Mathf.Abs(_target2.localPosition.x - _target1.localPosition.x));
+		transform.localRotation = Quaternion.Euler (Mathf.Rad2Deg * ax, Mathf.Rad2Deg * az, Mathf.Rad2Deg * ay);
 
 		var distance = Vector3.Distance (_target1.localPosition, _target2.localPosition);
 
@@ -46,5 +46,21 @@ public class Link : MonoBehaviour {
 		_tower1.Polarity = Definitions.Polarity.Off;
 		_tower2.Polarity = Definitions.Polarity.Off;
 		Destroy (this.gameObject);
+	}
+
+	int RelativePosition () {
+		if (_target2.localPosition.x >= _target1.localPosition.x) {
+			if (_target2.localPosition.z >= _target1.localPosition.z) {
+				return -1;
+			} else {
+				return 1;
+			}
+		} else {
+			if (_target2.localPosition.z >= _target1.localPosition.z) {
+				return 1;
+			} else {
+				return -1;
+			}
+		}
 	}
 }
