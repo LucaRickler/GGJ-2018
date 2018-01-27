@@ -10,6 +10,18 @@ public class Tower : MonoBehaviour {
 	private bool _link_on = false;
 
 	[SerializeField]
+	private Material _positive_material;
+	[SerializeField]
+	private Material _negative_material;
+	[SerializeField]
+	private Material _off_material;
+
+	private MeshRenderer _my_render;
+
+	public Transform targetCenter;
+
+
+	[SerializeField]
 	private Definitions.Polarity _polarity = Definitions.Polarity.Off;
 	public Definitions.Polarity Polarity {
 		get {
@@ -23,13 +35,33 @@ public class Tower : MonoBehaviour {
 				}
 			}
 			this._polarity = value;
+			var mats = GetComponent<Renderer>().materials;
+			switch (value) {
+			case Definitions.Polarity.Off:
+				mats[1] = _off_material; 
+				GetComponent<Renderer>().materials = mats;
+				break;
+			case Definitions.Polarity.Negative:
+				mats[1] = _negative_material; 
+				GetComponent<Renderer>().materials = mats;
+				break;
+			case Definitions.Polarity.Positive:
+				mats[1] = _positive_material; 
+				GetComponent<Renderer>().materials = mats;
+				break;
+			}
 			this.CheckLink ();
 		}
 	}
 
 	void Start () {
 		this._ray_viewer = this.GetComponent<RayViewer> ();
+		this._my_render = this.GetComponent<MeshRenderer> ();
+		var mats = GetComponent<Renderer>().materials;
+		mats[1] = _off_material; 
+		GetComponent<Renderer>().materials = mats;
 	}
+
 
 	public void CheckLink () {
 		List<Tower> all_towers = GameManager.Instance.towers;

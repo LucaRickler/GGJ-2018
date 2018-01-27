@@ -7,7 +7,7 @@ public class RayViewer : MonoBehaviour {
     
 	public Definitions.HitType CheckView (Transform other) {
 		RaycastHit hit;
-        if (Physics.Raycast(transform.position, other.position - transform.position, out hit))
+        if (Physics.Raycast(transform.position, other.position - transform.position, out hit, 10000000000))
         {
 
             if (hit.collider.tag == "Wall")

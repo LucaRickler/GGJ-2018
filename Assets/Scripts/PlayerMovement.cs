@@ -17,15 +17,17 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float shotDelay = 0.2f;
 
-    // Use this for initialization
-    void Start () {
-
-    }
+	private bool using_controller = true;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
             shooting = true;
+
+		if (Mathf.Abs (Input.GetAxis ("RightH")) > axis_tolerance)
+			using_controller = true;
+		//else
+		//	using_controller = false;
         InputPlayer();
         UpdatePosition();
         UpdateDirection();
@@ -41,11 +43,21 @@ public class PlayerMovement : MonoBehaviour {
             GutlingShoot();
     }
 
+	private float axis_tolerance = 0.3f;
+
     void InputPlayer() {
-        isMovingLeft = Input.GetKey(KeyCode.A);
-        isMovingRight = Input.GetKey(KeyCode.D);
-        isMovingStraight = Input.GetKey(KeyCode.W);
-        isMovingBack = Input.GetKey(KeyCode.S);
+		isMovingLeft = Input.GetKey(KeyCode.A); //|| Input.GetAxis("Horizontal") < -axis_tolerance;
+		isMovingRight = Input.GetKey(KeyCode.D);//|| Input.GetAxis("Horizontal") > axis_tolerance;
+		isMovingStraight = Input.GetKey(KeyCode.W);// || Input.GetAxis("Vertical") > axis_tolerance;
+		isMovingBack = Input.GetKey(KeyCode.S);// || Input.GetAxis("Vertical") < -axis_tolerance;
+		/*if (Mathf.Abs (Input.GetAxis ("Horizontal")) < axis_tolerance) {
+			isMovingLeft = false;
+			isMovingRight = false;
+		}
+		if (Mathf.Abs (Input.GetAxis ("Vertical")) < axis_tolerance) {
+			isMovingBack = false;
+			isMovingStraight = false;
+		}*/
     }
 
     void UpdatePosition(){
@@ -55,22 +67,35 @@ public class PlayerMovement : MonoBehaviour {
             position.x -= speed * Time.deltaTime;
         else if (isMovingRight)
             position.x += speed * Time.deltaTime;
-        else if (isMovingStraight)
+        if (isMovingStraight)
             position.z += speed * Time.deltaTime;
         else if (isMovingBack)
             position.z -= speed * Time.deltaTime;
 
         //position = CheckWalls(position);
-        transform.localPosition = position;
+		transform.localPosition = position;
     }
 
+	//[SerializeField]
+	private float rotation_speed = 3.0f;
+
     void UpdateDirection() {
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+		//if (using_controller) {
+			//float x = Input.GetAxis ("RightH");
+			//float y = Input.GetAxis ("RightV");
+		//	float dir = Input.GetAxisRaw ("RightH");
+		//Vector3 newDir = new Vector3 (transform.position.x + dir, transform.position.y, transform.position.z - Input.GetAxisRaw("RightV"));
+		//transform.LookAt (newDir);
+			//transform.Rotate (new Vector3 (0, dir*rotation_speed, 0));// = Quaternion.Euler (new Vector3 (0, Mathf.Atan2 (y, x)  * Mathf.Rad2Deg, 0));
+			//transform.rotation = Quaternion.Euler (new Vector3 (0, Mathf.Atan2 (y,x) * Mathf.Rad2Deg, 0));
+		//} else {
+			Vector3 objectPos = Camera.main.WorldToScreenPoint (transform.position);
         
-        Vector3 dir = Input.mousePosition - objectPos;
+			Vector3 dir = Input.mousePosition - objectPos;
       
-        transform.rotation = Quaternion.Euler(new Vector3(0, Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg, 0));
-    }
+			transform.rotation = Quaternion.Euler (new Vector3 (0, Mathf.Atan2 (dir.x, dir.y) * Mathf.Rad2Deg, 0));
+		//}
+	}
 
     void Shoot(){
 
