@@ -5,16 +5,23 @@ using UnityEngine;
 public class Tower : MonoBehaviour {
 	private RayViewer _ray_viewer;
 
+
+	private List<Link> _links = new List<Link>();
+	private bool _link_on = false;
+
 	[SerializeField]
-	private GameObject _link_prefab;
-
 	private Definitions.Polarity _polarity = Definitions.Polarity.Off;
-
 	public Definitions.Polarity Polarity {
 		get {
 			return this._polarity;
 		} 
 		set {
+			if (value != this._polarity && _link_on) {
+				_link_on = false;
+				foreach (Link l in _links) {
+					l.Deactivate ();
+				}
+			}
 			this._polarity = value;
 			this.CheckLink ();
 		}
@@ -42,9 +49,25 @@ public class Tower : MonoBehaviour {
 		}
 	}
 
+	public void AddLink(Link l) {
+		this._links.Add (l);
+	}
+
 	private void CreateLink (Tower other) {
-		GameObject link = Instantiate (_link_prefab) as GameObject;
-		link.GetComponent<Link> ().Init (this, other);
+		FindLink (other).Activate ();
+		_link_on = true;
+	}
+
+	public bool HasLink (Tower other) {
+		return this.FindLink (other) != null;
+	}
+
+	public Link FindLink(Tower other) {
+		foreach (Link l in _links) {
+			if ((l.Tower1 == this && l.Tower2 == other) || (l.Tower2 == this && l.Tower1 == other))
+				return l;
+		}
+		return null;
 	}
 
     private void OnTriggerEnter(Collider other)
