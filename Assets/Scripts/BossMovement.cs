@@ -14,7 +14,7 @@ public class BossMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (player != null)
             Following();
 
@@ -52,12 +52,33 @@ public class BossMovement : MonoBehaviour {
 
     private bool CheckObstacles(Vector3 direction)
     {
+       /* if (Physics.Raycast(transform.position, direction, 2f))
+            return true;
+        else if (Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, 2f))
+            return true;
+        else if (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, 2f))
+            return true;
+        direction.z = -direction.z;
         if (Physics.Raycast(transform.position, direction, 2f))
             return true;
         else if (Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, 2f))
             return true;
         else if (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, 2f))
             return true;
+        direction = transform.right;
+        if (Physics.Raycast(transform.position, direction, 2f))
+            return true;
+        else if (Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, 2f))
+            return true;
+        else if (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, 2f))
+            return true;
+        direction.x = -direction.x;
+        if (Physics.Raycast(transform.position, direction, 2f))
+            return true;
+        else if (Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, 2f))
+            return true;
+        else if (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, 2f))
+            return true;*/
         return false;
     }
 }

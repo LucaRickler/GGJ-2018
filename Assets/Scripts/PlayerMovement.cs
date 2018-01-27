@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
             shooting = true;
         InputPlayer();
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour {
         else if (isMovingBack)
             position.z -= speed * Time.deltaTime;
 
-        position = CheckWalls(position);
+        //position = CheckWalls(position);
         transform.localPosition = position;
     }
 
@@ -132,6 +132,8 @@ public class PlayerMovement : MonoBehaviour {
                 position += Vector3.right * speed * Time.deltaTime;
             else if (hit.collider.name.Equals("RightBorder"))
                 position += Vector3.left * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("BottomBorder"))
+                position += Vector3.forward * speed * Time.deltaTime;
             return position;
         }
         direction.z = -direction.z;
@@ -144,6 +146,8 @@ public class PlayerMovement : MonoBehaviour {
                 position += Vector3.right * speed * Time.deltaTime;
             else if (hit.collider.name.Equals("RightBorder"))
                 position += Vector3.left * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("BottomBorder"))
+                position += Vector3.forward * speed * Time.deltaTime;
             return position;
         }
         direction = transform.right;
@@ -156,6 +160,8 @@ public class PlayerMovement : MonoBehaviour {
                 position += Vector3.right * speed * Time.deltaTime;
             else if (hit.collider.name.Equals("RightBorder"))
                 position += Vector3.left * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("BottomBorder"))
+                position += Vector3.forward * speed * Time.deltaTime;
             return position;
         }
         direction.x = -direction.x;
@@ -168,6 +174,8 @@ public class PlayerMovement : MonoBehaviour {
                 position += Vector3.right * speed * Time.deltaTime;
             else if (hit.collider.name.Equals("RightBorder"))
                 position += Vector3.left * speed * Time.deltaTime;
+            else if (hit.collider.name.Equals("BottomBorder"))
+                position += Vector3.forward * speed * Time.deltaTime;
             return position;
         }
         return position;
