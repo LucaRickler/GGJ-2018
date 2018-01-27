@@ -124,8 +124,8 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 CheckWalls(Vector3 position) {
         RaycastHit hit;
         Vector3 direction = transform.forward;
-        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
-            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f))) {
+        if (Physics.Raycast(transform.position, direction, out hit, 1f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 1f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 1))) {
             if (hit.collider.name.Equals("TopBorder"))
                 position += -Vector3.forward * speed * Time.deltaTime;
             else if (hit.collider.name.Equals("LeftBorder"))
@@ -136,8 +136,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         direction.z = -direction.z;
 
-        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
-            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f))) {
+        if (Physics.Raycast(transform.position, direction, out hit, 1f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 1f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 1f))) {
             if (hit.collider.name.Equals("TopBorder"))
                 position += -Vector3.forward * speed * Time.deltaTime;
             else if (hit.collider.name.Equals("LeftBorder"))
@@ -147,8 +147,8 @@ public class PlayerMovement : MonoBehaviour {
             return position;
         }
         direction = transform.right;
-        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
-            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f)))
+        if (Physics.Raycast(transform.position, direction, out hit, 1f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 1f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 1f)))
         {
             if (hit.collider.name.Equals("TopBorder"))
                 position += -Vector3.forward * speed * Time.deltaTime;
@@ -159,8 +159,8 @@ public class PlayerMovement : MonoBehaviour {
             return position;
         }
         direction.x = -direction.x;
-        if (Physics.Raycast(transform.position, direction, out hit, 0.5f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 0.5f) ||
-            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 0.5f)))
+        if (Physics.Raycast(transform.position, direction, out hit, 1f) || Physics.Raycast(transform.position + new Vector3(0.5f, 0, 0), direction, out hit, 1f) ||
+            (Physics.Raycast(transform.position + new Vector3(-0.5f, 0, 0), direction, out hit, 1f)))
         {
             if (hit.collider.name.Equals("TopBorder"))
                 position += -Vector3.forward * speed * Time.deltaTime;

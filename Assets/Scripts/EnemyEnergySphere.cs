@@ -9,7 +9,7 @@ public class EnemyEnergySphere : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        boss = GameObject.Find("Enemy").transform;
 	}
 	
 	// Update is called once per frame
@@ -18,6 +18,7 @@ public class EnemyEnergySphere : MonoBehaviour {
 	}
 
     void Movement() {
+        transform.position = boss.position;
         transform.RotateAround(boss.position, Vector3.up, speed * Time.deltaTime);
     }
 }

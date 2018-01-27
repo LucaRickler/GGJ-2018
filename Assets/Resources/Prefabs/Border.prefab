@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 65504332506596766}
   - component: {fileID: 23086372120509280}
   - component: {fileID: 54357004962203606}
+  - component: {fileID: 114673245972083728}
   m_Layer: 0
   m_Name: Border
   m_TagString: Border
@@ -109,3 +110,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114673245972083728
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1107610504392294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efac03f544b904147a97c758776420d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
