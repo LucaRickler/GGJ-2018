@@ -43,7 +43,8 @@ public class Tower : MonoBehaviour {
 	}
 
 	private void CreateLink (Tower other) {
-        Debug.Log("link on");
+		GameObject link = Instantiate (_link_prefab) as GameObject;
+		link.GetComponent<Link> ().Init (this, other);
 	}
 
     private void OnTriggerEnter(Collider other)
