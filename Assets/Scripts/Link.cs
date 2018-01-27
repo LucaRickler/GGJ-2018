@@ -6,24 +6,38 @@ public class Link : MonoBehaviour {
 
 	[SerializeField]
 	private float _time_out = 10.0f;
+	private float _current_time = 10.0f;
 
 	private Transform _target1;
 	private Transform _target2;
 	private Tower _tower1;
+	public Tower Tower1 {
+		get {
+			return _tower1;
+		}
+	}
 	private Tower _tower2;
+	public Tower Tower2 {
+		get {
+			return _tower2;
+		}
+	}
 
 	public void Init (Tower tower1, Tower tower2) {
 		this._target1 = tower1.transform;
 		this._target2 = tower2.transform;
 		this._tower1 = tower1;
 		this._tower2 = tower2;
+		this.gameObject.SetActive (false);
 		Stretch ();
 	}
 
 	void Update () {
-		_time_out -= Time.deltaTime;
-		if (_time_out <= 0.0f)
-			Destroy (this.gameObject);
+		if (gameObject.activeSelf) {
+			_time_out -= Time.deltaTime;
+			if (_time_out <= 0.0f)
+				Deactivate ();
+		}
 		Stretch ();
 	}
 
@@ -42,12 +56,18 @@ public class Link : MonoBehaviour {
 		GetComponent<CapsuleCollider> ().height = 0.5f * distance;
 	}
 
-	public void Deactivate (bool towersOff = true) {
-		_tower1.Polarity = Definitions.Polarity.Off;
-		_tower2.Polarity = Definitions.Polarity.Off;
-		Destroy (this.gameObject);
+	public void Deactivate () {
+		if(_tower1.Polarity != Definitions.Polarity.Off)
+			_tower1.Polarity = Definitions.Polarity.Off;
+		if(_tower2.Polarity != Definitions.Polarity.Off)
+			_tower2.Polarity = Definitions.Polarity.Off;
+		this.gameObject.SetActive (false);
 	}
 
+	public void Activate () {
+		_current_time = _time_out;
+		this.gameObject.SetActive (true);
+	}
 
     private void OnTriggerEnter(Collider other)
     {
