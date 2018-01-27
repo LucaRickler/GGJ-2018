@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33046254376374490}
   - component: {fileID: 23263859247075888}
   - component: {fileID: 135115796668739556}
-  - component: {fileID: 114465922112917912}
   m_Layer: 0
   m_Name: EnergySphere
   m_TagString: EnergySphere
@@ -56,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7215be4496b1479408d473fbc5a11877, type: 2}
+  - {fileID: 2100000, guid: a0a0f90ace23a425b9c97d01f63fdf35, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,19 +81,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040368044094302}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114465922112917912
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1040368044094302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd4b626a59507e40a89329573ec3713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  speed: 90
 --- !u!135 &135115796668739556
 SphereCollider:
   m_ObjectHideFlags: 1
