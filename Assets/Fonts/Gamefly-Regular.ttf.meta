@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: d9cba6e6cbd59b84a877b1a10c6803a0
+timeCreated: 1517142051
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gamefly
+  fontNames:
+  - Gamefly
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
