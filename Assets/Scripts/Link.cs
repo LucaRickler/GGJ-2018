@@ -10,12 +10,14 @@ public class Link : MonoBehaviour {
 
 	private Transform _target1;
 	private Transform _target2;
+
 	private Tower _tower1;
 	public Tower Tower1 {
 		get {
 			return _tower1;
 		}
 	}
+
 	private Tower _tower2;
 	public Tower Tower2 {
 		get {
@@ -29,15 +31,20 @@ public class Link : MonoBehaviour {
 		this._tower1 = tower1;
 		this._tower2 = tower2;
 		this.gameObject.SetActive (false);
+        _current_time = _time_out;
 		Stretch ();
 	}
 
 	void Update () {
-		if (gameObject.activeSelf) {
-			_time_out -= Time.deltaTime;
-			if (_time_out <= 0.0f)
-				Deactivate ();
-		}
+        if (gameObject.activeSelf)
+        {
+            _current_time -= Time.deltaTime;
+            if (_current_time <= 0.0f)
+            {
+                _current_time = _time_out;
+                Deactivate();
+            }
+        }
 		Stretch ();
 	}
 
@@ -56,13 +63,17 @@ public class Link : MonoBehaviour {
 		GetComponent<CapsuleCollider> ().height = 0.5f * distance;
 	}
 
-	public void Deactivate () {
-		if(_tower1.Polarity != Definitions.Polarity.Off)
-			_tower1.Polarity = Definitions.Polarity.Off;
-		if(_tower2.Polarity != Definitions.Polarity.Off)
-			_tower2.Polarity = Definitions.Polarity.Off;
-		this.gameObject.SetActive (false);
-	}
+    public void Deactivate()
+    {
+        if (gameObject.activeSelf)
+        {
+            if (_tower1.Polarity != Definitions.Polarity.Off)
+                _tower1.Polarity = Definitions.Polarity.Off;
+            if (_tower2.Polarity != Definitions.Polarity.Off)
+                _tower2.Polarity = Definitions.Polarity.Off;
+            this.gameObject.SetActive(false);
+        }
+    }
 
 	public void Activate () {
 		_current_time = _time_out;

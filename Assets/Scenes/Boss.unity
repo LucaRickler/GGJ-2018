@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44357228, g: 0.4928866, b: 0.5724655, a: 1}
+  m_IndirectSpecularColor: {r: 0.44357172, g: 0.49288613, b: 0.5724652, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.97
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -241,7 +241,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4345862542315500, guid: e8a306d0e2d40438287c989c60a0d6f3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -18.07
+      value: -22.22
       objectReference: {fileID: 0}
     - target: {fileID: 4345862542315500, guid: e8a306d0e2d40438287c989c60a0d6f3, type: 2}
       propertyPath: m_LocalRotation.x
@@ -353,7 +353,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.97
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -609,7 +609,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.97
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -769,7 +769,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.97
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4157189643051102, guid: 5aac79e03fd8d47f5841bac285b0369d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -819,7 +819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2108411267
 Transform:
   m_ObjectHideFlags: 0

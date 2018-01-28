@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections; 
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +23,7 @@ public class Tower : MonoBehaviour {
 
 	[SerializeField]
 	private Definitions.Polarity _polarity = Definitions.Polarity.Off;
+
 	public Definitions.Polarity Polarity {
 		get {
 			return this._polarity;
@@ -30,15 +31,17 @@ public class Tower : MonoBehaviour {
 		set {
 			if (value != this._polarity && _link_on) {
 				_link_on = false;
-				foreach (Link l in _links) {
+                this._polarity = value;
+                Debug.Log("deactivatig from " + gameObject.name);
+                foreach (Link l in _links) {
 					l.Deactivate ();
 				}
-			}
-			this._polarity = value;
+			} else
+			    this._polarity = value;
 			var mats = GetComponent<Renderer>().materials;
 			switch (value) {
 			case Definitions.Polarity.Off:
-				mats[1] = _off_material; 
+                mats[1] = _off_material; 
 				GetComponent<Renderer>().materials = mats;
 				break;
 			case Definitions.Polarity.Negative:
@@ -50,7 +53,9 @@ public class Tower : MonoBehaviour {
 				GetComponent<Renderer>().materials = mats;
 				break;
 			}
-			this.CheckLink ();
+            Debug.Log(gameObject.name);
+            if(_polarity != Definitions.Polarity.Off)
+			    this.CheckLink ();
 		}
 	}
 
@@ -66,19 +71,24 @@ public class Tower : MonoBehaviour {
 	public void CheckLink () {
 		List<Tower> all_towers = GameManager.Instance.towers;
 		foreach (Tower t in all_towers) {
-            if (t.gameObject != this.gameObject)
+            /*if (t.gameObject != this.gameObject && t.Polarity != Definitions.Polarity.Off)
             {
                 Definitions.HitType res = this._ray_viewer.CheckView(t.transform);
-                if (t.Polarity != Definitions.Polarity.Off && t.Polarity != this.Polarity)
+                if (t.Polarity != this.Polarity)
                 {
                     if (res == Definitions.HitType.Tower || res == Definitions.HitType.Charachter)
                     {
-                        this.CreateLink(t);
+                        CreateLink(t);
                         break;
                     }
                 }
+            }*/
+            if (t.gameObject != this.gameObject && t.Polarity != Definitions.Polarity.Off && t.Polarity != this.Polarity) {
+                CreateLink(t);
             }
-		}
+
+        }
+        
 	}
 
 	public void AddLink(Link l) {

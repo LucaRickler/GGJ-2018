@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
             shooting = true;
 
-		if (Mathf.Abs (Input.GetAxis ("RightH")) > axis_tolerance)
-			using_controller = true;
+		/*if (Mathf.Abs (Input.GetAxis ("RightH")) > axis_tolerance)
+			using_controller = true;*/
 		//else
 		//	using_controller = false;
         InputPlayer();
@@ -98,28 +98,27 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
     void Shoot(){
-
+        shooting = false;
         string prefab_name = "";
-        GameObject bullet;
-        bool mouse_down = false;
+        GameObject bullet = null;
         if (Input.GetMouseButton(0))
         {
             prefab_name = "BulletPlus";
-            mouse_down = true;
+            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), transform.localPosition, transform.localRotation);
         }
         else if (Input.GetMouseButton(1))
         {
             prefab_name = "BulletMinus";
-            mouse_down = true;
-        }
-        if (mouse_down)
-        {
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), transform.localPosition, transform.localRotation);
-			bullet.transform.rotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y - 90, transform.localRotation.eulerAngles.z);
+        }
+        if (bullet != null)
+        {
+            bullet.transform.rotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y - 90, transform.localRotation.eulerAngles.z);
         }
     }
 
     void GutlingShoot() {
+        shooting = false;
         string prefab_name = "";
         GameObject bullet;
         bool mouse_down = false;
