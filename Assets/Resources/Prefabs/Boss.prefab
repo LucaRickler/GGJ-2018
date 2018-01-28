@@ -698,3 +698,19 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 2.5
   speedBack: 5
+  nucleusRender: {fileID: 23554808726298440}
+  shellRender:
+  - {fileID: 23161184070963506}
+  - {fileID: 23774485198966900}
+  - {fileID: 23611129632834000}
+  - {fileID: 23496870307899386}
+  - {fileID: 23513405937313620}
+  - {fileID: 23382739894829492}
+  _positive_shell_material: {fileID: 2100000, guid: 19124da1abbb9484e8343048acaaba0f,
+    type: 2}
+  _negative_shell_material: {fileID: 2100000, guid: bc5a54caac9104cbca71519606b85485,
+    type: 2}
+  _positive_core_material: {fileID: 2100000, guid: 583cc861975904f7ab4451654ca8a20f,
+    type: 2}
+  _negative_core_material: {fileID: 2100000, guid: cea9384fa4695489387786b8399f7cda,
+    type: 2}
