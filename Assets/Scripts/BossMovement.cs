@@ -127,6 +127,7 @@ public class BossMovement : MonoBehaviour {
 				if (other.gameObject.GetComponent<BulletBehaviour> ().Polarity != Definitions.Polarity.Off ||
 					other.gameObject.GetComponent<BulletBehaviour> ().Polarity != polarity) {
 					dead = true;
+					GameManager.Instance.Victory ();
 				}
 
 			}

@@ -10,6 +10,10 @@ public class GameManager : Singleton<GameManager> {
 	private GameObject _link_prefab;
 
 	public GameObject gameOverScreen;
+	public GameObject gameOverText;
+	public GameObject victoryText;
+
+
 
 	void Awake () {
 		foreach (Tower t1 in towers) {
@@ -22,13 +26,25 @@ public class GameManager : Singleton<GameManager> {
 				}
 			}	
 		}
+
+
 	}
 
 	public void GameOver () {
 		gameOverScreen.SetActive (true);
+		gameOverText.SetActive (true);
 	}
 
 	public void Restart () {
-		
+		SceneManager.LoadScene (1);
+	}
+
+	public void MainMenu () {
+		SceneManager.LoadScene (0);
+	}
+
+	public void Victory () {
+		gameOverScreen.SetActive (true);
+		victoryText.SetActive (true);
 	}
 }
