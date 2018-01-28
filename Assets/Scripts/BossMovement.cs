@@ -57,7 +57,7 @@ public class BossMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (player != null)
+        if (player != null && !dead)
             Following();
 		_current_color_timer -= Time.deltaTime;
 		if (_current_color_timer < 0) {
@@ -121,8 +121,21 @@ public class BossMovement : MonoBehaviour {
 			GetComponent<AudioSource> ().clip = sound_clips [0];
 			GetComponent<AudioSource> ().Play ();
             speed = phase2Speed;
-        }        
+			phase2 = true;
+		} else if (other.tag.Equals("Bullet")) {
+			if (phase2) {
+				if (other.gameObject.GetComponent<BulletBehaviour> ().Polarity != Definitions.Polarity.Off ||
+					other.gameObject.GetComponent<BulletBehaviour> ().Polarity != polarity) {
+					dead = true;
+				}
+
+			}
+			Destroy (other.gameObject);
+		}
     }
+
+	bool phase2 = false;
+	bool dead = false;
 
     private bool CheckObstacles(Vector3 direction)
     {

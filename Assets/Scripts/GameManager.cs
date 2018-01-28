@@ -1,12 +1,15 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 	public List<Tower> towers = new List<Tower>();
 
 	[SerializeField]
 	private GameObject _link_prefab;
+
+	public GameObject gameOverScreen;
 
 	void Awake () {
 		foreach (Tower t1 in towers) {
@@ -19,5 +22,13 @@ public class GameManager : Singleton<GameManager> {
 				}
 			}	
 		}
+	}
+
+	public void GameOver () {
+		gameOverScreen.SetActive (true);
+	}
+
+	public void Restart () {
+		
 	}
 }

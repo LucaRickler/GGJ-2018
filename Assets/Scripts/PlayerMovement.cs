@@ -31,14 +31,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonUp (0) || Input.GetMouseButtonUp (1)) {
-			animator.SetBool ("Attack Pos", false);
-			animator.SetBool ("Attack Neg", false);
-			pos_origin.GetComponent<AudioSource> ().Stop ();
-			neg_origin.GetComponent<AudioSource> ().Stop ();
-			shooting = true;
-		}
+	void FixedUpdate () {
+		
 		/*if (Mathf.Abs (Input.GetAxis ("RightH")) > axis_tolerance)
 			using_controller = true;*/
 		//else
@@ -57,6 +51,16 @@ public class PlayerMovement : MonoBehaviour {
         //if (shooting)
         //    GutlingShoot();
     }
+
+	void Update () {
+		if (Input.GetMouseButtonUp (0) || Input.GetMouseButtonUp (1)) {
+			animator.SetBool ("Attack Pos", false);
+			animator.SetBool ("Attack Neg", false);
+			pos_origin.GetComponent<AudioSource> ().Stop ();
+			neg_origin.GetComponent<AudioSource> ().Stop ();
+			shooting = true;
+		}
+	}
 
 	private float axis_tolerance = 0.3f;
 
@@ -163,6 +167,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (other.tag.Equals("EnergySphere") || other.tag.Equals("Boss"))
         {
+			GameManager.Instance.GameOver ();
             Destroy(this.gameObject);
         }
     }
