@@ -8,9 +8,11 @@ public class BossMovement : MonoBehaviour {
     public float speed;
     public float speedBack;
 
+	private Animator animator;
+
 	// Use this for initialization
 	void Start () {
-		
+		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -29,7 +31,7 @@ public class BossMovement : MonoBehaviour {
             if (CheckObstacles(transform.forward))            
                 isOBstacles = true;           
             else
-                transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+				transform.rotation = Quaternion.Euler(-90, angle, 0);
         }
         if (!isOBstacles)
         {
@@ -46,6 +48,7 @@ public class BossMovement : MonoBehaviour {
     {
         if (other.tag.Equals("Link"))
         {
+			animator.SetInteger ("Phase", 2);
             speed = 4f;
         }        
     }

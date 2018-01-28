@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour {
         if (mouse_down)
         {
             bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), transform.localPosition, transform.localRotation);
+			bullet.transform.rotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y - 90, transform.localRotation.eulerAngles.z);
         }
     }
 

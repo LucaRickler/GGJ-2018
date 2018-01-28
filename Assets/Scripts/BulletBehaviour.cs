@@ -38,7 +38,7 @@ public class BulletBehaviour : MonoBehaviour {
         else
         {
             lifeTime -= Time.deltaTime;
-            transform.position += transform.forward * Time.deltaTime * speed;
+			transform.position += transform.right * Time.deltaTime * speed;
         }
     }
 
