@@ -9,6 +9,11 @@ public class BossMovement : MonoBehaviour {
     public float speedBack;
 
 	private Animator animator;
+	public MeshRenderer nucleusRender;
+	[SerializeField]
+	private Material _positive_material;
+	[SerializeField]
+	private Material _negative_material;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +25,18 @@ public class BossMovement : MonoBehaviour {
         if (player != null)
             Following();
 
+	}
+
+	private Definitions.Polarity polarity;
+
+	void ChangeColor() {
+		if (polarity == Definitions.Polarity.Negative) {
+			polarity = Definitions.Polarity.Positive;
+			nucleusRender.material = _positive_material;
+		} else {
+			polarity = Definitions.Polarity.Negative;
+			nucleusRender.material = _negative_material;
+		}
 	}
 
     void Following() {
