@@ -82,8 +82,8 @@ public class Link : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("EnergySphere"))        
-            Destroy(this.gameObject);
+		if (other.tag.Equals ("EnergySphere"))
+			Deactivate ();
     }
 
 	int Relativeposition () {

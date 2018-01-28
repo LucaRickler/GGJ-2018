@@ -18,12 +18,25 @@ public class PlayerMovement : MonoBehaviour {
     private float shotDelay = 0.2f;
 
 	private bool using_controller = true;
+
+	private Animator animator;
+
+	[SerializeField]
+	private Transform pos_origin;
+	[SerializeField]
+	private Transform neg_origin;
+
+	void Start () {
+		animator = GetComponent<Animator> ();
+	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
-            shooting = true;
-
+	void Update () {
+		if (Input.GetMouseButtonUp (0) || Input.GetMouseButtonUp (1)) {
+			animator.SetBool ("Attack Pos", false);
+			animator.SetBool ("Attack Neg", false);
+			shooting = true;
+		}
 		/*if (Mathf.Abs (Input.GetAxis ("RightH")) > axis_tolerance)
 			using_controller = true;*/
 		//else
@@ -39,8 +52,8 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
             delayBetweenShoot -= Time.deltaTime;
-        if (shooting)
-            GutlingShoot();
+        //if (shooting)
+        //    GutlingShoot();
     }
 
 	private float axis_tolerance = 0.3f;
@@ -103,13 +116,15 @@ public class PlayerMovement : MonoBehaviour {
         GameObject bullet = null;
         if (Input.GetMouseButton(0))
         {
+			animator.SetBool ("Attack Pos", true);
             prefab_name = "BulletPlus";
-            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), transform.localPosition, transform.localRotation);
+			bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), pos_origin.position, transform.localRotation);
         }
         else if (Input.GetMouseButton(1))
         {
+			animator.SetBool ("Attack Neg", true);
             prefab_name = "BulletMinus";
-            bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), transform.localPosition, transform.localRotation);
+			bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), neg_origin.position, transform.localRotation);
         }
         if (bullet != null)
         {
@@ -124,11 +139,13 @@ public class PlayerMovement : MonoBehaviour {
         bool mouse_down = false;
         if (Input.GetMouseButtonDown(0))
         {
+			animator.SetBool ("Attack Pos", true);
             prefab_name = "BulletPlus";
             mouse_down = true;
         }
         else if (Input.GetMouseButtonDown(1))
         {
+			animator.SetBool ("Attack Neg", true);
             prefab_name = "BulletMinus";
             mouse_down = true;
         }
