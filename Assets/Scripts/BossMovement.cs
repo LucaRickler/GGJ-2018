@@ -7,6 +7,7 @@ public class BossMovement : MonoBehaviour {
     public Transform player;
     public float speed;
     public float speedBack;
+    public float phase2Speed;
 
 	private Animator animator;
 	public MeshRenderer nucleusRender;
@@ -100,9 +101,9 @@ public class BossMovement : MonoBehaviour {
         }
         if (!isOBstacles)
         {
-            if (Mathf.Abs(player.localPosition.x - transform.localPosition.x) > 5f || Mathf.Abs(player.localPosition.z - transform.localPosition.z) > 5f)
+            if (Mathf.Abs(player.localPosition.x - transform.localPosition.x) > 8f || Mathf.Abs(player.localPosition.z - transform.localPosition.z) > 8f)
                 transform.position = Vector3.MoveTowards(transform.localPosition, player.localPosition, speed * Time.deltaTime);
-            else if (Mathf.Abs(player.localPosition.x - transform.localPosition.x) < 5f || Mathf.Abs(player.localPosition.z - transform.localPosition.z) < 5f)
+            else if (Mathf.Abs(player.localPosition.x - transform.localPosition.x) < 8f || Mathf.Abs(player.localPosition.z - transform.localPosition.z) < 8f)
                 transform.position -= Vector3.back * Time.deltaTime * speedBack;
         }
         else 
@@ -114,7 +115,7 @@ public class BossMovement : MonoBehaviour {
         if (other.tag.Equals("Link"))
         {
 			animator.SetInteger ("Phase", 2);
-            speed = 4f;
+            speed = phase2Speed;
         }        
     }
 
