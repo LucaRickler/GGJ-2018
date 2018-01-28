@@ -9,7 +9,7 @@ public class EnemyEnergySphere : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        boss = GameObject.Find("Enemy").transform;
+        //boss = GameObject.Find("Enemy").transform;
 	}
 	
 	// Update is called once per frame
