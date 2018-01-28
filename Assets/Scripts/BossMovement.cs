@@ -25,6 +25,9 @@ public class BossMovement : MonoBehaviour {
 	private float _color_change_time = 20.0f;
 	private float _current_color_timer;
 
+	[SerializeField]
+	private AudioClip[] sound_clips;
+
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -115,6 +118,8 @@ public class BossMovement : MonoBehaviour {
         if (other.tag.Equals("Link"))
         {
 			animator.SetInteger ("Phase", 2);
+			GetComponent<AudioSource> ().clip = sound_clips [0];
+			GetComponent<AudioSource> ().Play ();
             speed = phase2Speed;
         }        
     }

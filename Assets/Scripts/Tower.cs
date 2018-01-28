@@ -41,16 +41,18 @@ public class Tower : MonoBehaviour {
 			var mats = GetComponent<Renderer>().materials;
 			switch (value) {
 			case Definitions.Polarity.Off:
-                mats[1] = _off_material; 
-				GetComponent<Renderer>().materials = mats;
+				mats [1] = _off_material; 
+				GetComponent<Renderer> ().materials = mats;
 				break;
 			case Definitions.Polarity.Negative:
 				mats[1] = _negative_material; 
 				GetComponent<Renderer>().materials = mats;
+				GetComponent<AudioSource> ().Play ();
 				break;
 			case Definitions.Polarity.Positive:
 				mats[1] = _positive_material; 
 				GetComponent<Renderer>().materials = mats;
+				GetComponent<AudioSource> ().Play ();
 				break;
 			}
             Debug.Log(gameObject.name);

@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0) || Input.GetMouseButtonUp (1)) {
 			animator.SetBool ("Attack Pos", false);
 			animator.SetBool ("Attack Neg", false);
+			pos_origin.GetComponent<AudioSource> ().Stop ();
+			neg_origin.GetComponent<AudioSource> ().Stop ();
 			shooting = true;
 		}
 		/*if (Mathf.Abs (Input.GetAxis ("RightH")) > axis_tolerance)
@@ -119,12 +121,14 @@ public class PlayerMovement : MonoBehaviour {
 			animator.SetBool ("Attack Pos", true);
             prefab_name = "BulletPlus";
 			bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), pos_origin.position, transform.localRotation);
-        }
+			pos_origin.GetComponent<AudioSource> ().Play ();
+		}
         else if (Input.GetMouseButton(1))
         {
 			animator.SetBool ("Attack Neg", true);
             prefab_name = "BulletMinus";
 			bullet = (GameObject)Instantiate(Resources.Load("Prefabs/" + prefab_name), neg_origin.position, transform.localRotation);
+			neg_origin.GetComponent<AudioSource> ().Play ();
         }
         if (bullet != null)
         {
